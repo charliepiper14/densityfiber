@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Density Fiber — Voller haar in 30 seconden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1f1a1d;
+    --muted:#6c6470;
+    --line:#efe6ec;
+    --blush:#fdf2f8;
+    --blush-2:#f7e3ef;
+    --magenta:#e5147d;
+    --magenta-deep:#bf0d68;
+    --white:#ffffff;
+    --green:#1f9d6b;
+    --sans:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --shadow:0 1px 2px rgba(31,26,29,.05),0 12px 30px rgba(31,26,29,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:#fbf8fa;color:var(--ink);
+    font-family:var(--sans);font-size:18px;line-height:1.6;font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* ===== brand header (replace .mark with real Density Fiber logo SVG/PNG) ===== */
+  .topbar{
+    background:var(--white);border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:40;
+  }
+  .topbar .in{max-width:680px;margin:0 auto;padding:12px 22px;
+    display:flex;align-items:center;justify-content:center;gap:11px}
+  .logo{display:flex;align-items:center;gap:11px}
+  .logo .mark{
+    width:34px;height:34px;border-radius:9px;flex:none;
+    background:linear-gradient(140deg,#ff5fae,var(--magenta-deep));
+    color:#fff;font-weight:800;font-size:15px;letter-spacing:-.04em;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 3px 8px rgba(191,13,104,.3);
+  }
+  .logo .word{font-weight:700;letter-spacing:.18em;font-size:15px;text-transform:uppercase}
+
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px}
+
+  .adlabel{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);border-radius:999px;
+    padding:4px 11px;margin:32px 0 16px}
+  .eyebrow{color:var(--magenta);font-weight:700;font-size:12.5px;letter-spacing:.15em;
+    text-transform:uppercase;margin:0 0 14px}
+  h1{font-weight:800;font-size:35px;line-height:1.16;letter-spacing:-.02em;margin:0 0 16px}
+  .deck{font-size:19px;line-height:1.5;color:#473e44;font-weight:400;margin:0 0 22px}
+  .byline{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:13px 0;margin:0 0 30px}
+  .byline .dot{width:32px;height:32px;border-radius:50%;
+    background:linear-gradient(135deg,#ff7ab5,var(--magenta));flex:none}
+  .byline b{color:var(--ink);font-weight:600}
+
+  p{margin:0 0 20px}
+
+  .figure{margin:8px 0 28px}
+  .ph{border-radius:16px;
+    background:radial-gradient(120% 90% at 20% 10%,#fde6f1 0,transparent 60%),
+      linear-gradient(135deg,#f9e9f2,#f0d9e7);
+    border:1px solid var(--blush-2);display:flex;align-items:center;justify-content:center;
+    text-align:center;min-height:230px;padding:24px}
+  .ph .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.78);
+    border:1px solid #f0d6e4;padding:7px 13px;border-radius:999px;font-weight:600;
+    color:#9a5d7d;font-size:13px}
+  .cap{font-size:13px;color:var(--muted);margin:10px 2px 0;font-style:italic}
+
+  .pull{font-size:23px;line-height:1.36;font-weight:600;color:var(--ink);
+    border-left:3px solid var(--magenta);padding:2px 0 2px 20px;margin:28px 0}
+
+  h2{font-weight:700;font-size:26px;line-height:1.22;margin:38px 0 16px;letter-spacing:-.01em}
+
+  .reasons{list-style:none;margin:14px 0 8px;padding:0}
+  .reason{background:var(--white);border:1px solid var(--line);border-radius:16px;
+    padding:22px 22px 20px;margin:0 0 14px;box-shadow:var(--shadow)}
+  .reason .num{font-weight:800;color:var(--magenta);font-size:12.5px;letter-spacing:.12em;
+    text-transform:uppercase;display:block;margin-bottom:7px}
+  .reason h3{margin:0 0 8px;font-size:20px;line-height:1.25;font-weight:700}
+  .reason p{margin:0;font-size:16px;color:#4a434f}
+
+  .stars{color:#f4b400;letter-spacing:2px;font-size:18px}
+  .proof{background:var(--blush);border:1px solid var(--blush-2);border-radius:18px;
+    padding:26px 22px;margin:30px 0;text-align:center}
+  .proof .big{font-weight:800;font-size:32px;margin:6px 0 2px}
+  .proof .sub{color:var(--muted);font-size:14px}
+
+  .reviews{display:grid;gap:14px;margin:16px 0 8px}
+  .rev{background:var(--white);border:1px solid var(--line);border-radius:14px;
+    padding:18px;box-shadow:var(--shadow)}
+  .rev .who{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .rev .av{width:36px;height:36px;border-radius:50%;flex:none;
+    background:linear-gradient(135deg,#ffd1e6,#ffb3d6);display:flex;align-items:center;
+    justify-content:center;font-weight:700;color:#b21466;font-size:14px}
+  .rev .name{font-weight:700;font-size:15px}
+  .rev .verified{color:var(--green);font-size:12px;font-weight:600}
+  .rev p{margin:0;font-size:15.5px;color:#4a434f}
+
+  .cases{display:grid;gap:14px;margin:18px 0}
+  .case{background:var(--white);border:1px solid var(--line);border-radius:14px;
+    padding:18px;box-shadow:var(--shadow)}
+  .case h4{margin:0 0 6px;font-size:18px;color:var(--magenta-deep);font-weight:700}
+  .case p{margin:0;font-size:15.5px;color:#4a434f}
+
+  .cmp{background:var(--white);border:1px solid var(--line);border-radius:16px;
+    overflow:hidden;box-shadow:var(--shadow);margin:18px 0}
+  .cmp .row{display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:13px 18px;border-bottom:1px solid var(--line);font-size:16px}
+  .cmp .row:last-child{border-bottom:0}
+  .cmp .row .y{display:inline-flex;align-items:center;justify-content:center;width:26px;
+    height:26px;border-radius:50%;background:linear-gradient(135deg,#ff5fae,var(--magenta-deep));
+    color:#fff;font-weight:700;flex:none;font-size:14px}
+
+  .offer{border-radius:20px;color:#fff;margin:34px 0 16px;overflow:hidden;
+    background:linear-gradient(160deg,#e5147d,#960f63);
+    box-shadow:0 18px 40px rgba(150,15,99,.28)}
+  .offer .inner{padding:26px 22px 24px}
+  .offer .kick{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.88}
+  .offer h2{color:#fff;margin:8px 0 4px;font-size:25px}
+  .offer .stock{font-size:14px;opacity:.95;margin-bottom:18px}
+  .opt{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);
+    border-radius:12px;padding:14px 16px;margin-bottom:11px;display:flex;align-items:center;
+    justify-content:space-between;gap:12px}
+  .opt.best{background:#fff;color:var(--ink);border-color:#fff}
+  .opt .l{font-weight:700;font-size:16px}
+  .opt .pill{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+    background:var(--magenta);color:#fff;border-radius:999px;padding:3px 8px;margin-left:8px}
+  .opt .r{text-align:right;font-size:15px}
+  .opt .was{opacity:.6;text-decoration:line-through;font-size:13px}
+  .opt .now{font-weight:800}
+
+  .cta{display:block;text-align:center;text-decoration:none;background:#fff;
+    color:var(--magenta-deep);font-weight:800;font-size:18px;padding:17px 18px;
+    border-radius:14px;margin:6px 0 14px;box-shadow:0 6px 16px rgba(0,0,0,.16);
+    transition:transform .12s ease,box-shadow .12s ease}
+  .cta:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(0,0,0,.22)}
+  .cta:active{transform:translateY(0)}
+
+  .cta-inline{display:inline-block;text-decoration:none;font-weight:800;color:#fff;
+    background:linear-gradient(135deg,#ff4fa3,var(--magenta-deep));padding:15px 26px;
+    border-radius:13px;box-shadow:0 8px 20px rgba(191,13,104,.32);
+    transition:transform .12s ease,box-shadow .12s ease}
+  .cta-inline:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(191,13,104,.42)}
+  .cta-wrap{text-align:center;margin:24px 0}
+
+  .reassure{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;
+    color:rgba(255,255,255,.92);font-size:13.5px;margin-top:4px}
+  .reassure span{display:inline-flex;align-items:center;gap:6px}
+
+  .guarantee{background:var(--blush);border:1px dashed var(--magenta);border-radius:14px;
+    padding:16px 18px;margin:22px 0;font-size:15.5px;color:#5a3349}
+  .guarantee b{color:var(--magenta-deep)}
+
+  details{border-bottom:1px solid var(--line);padding:6px 0}
+  summary{cursor:pointer;list-style:none;padding:14px 2px;font-weight:600;font-size:17px;
+    display:flex;justify-content:space-between;gap:12px;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary .pls{color:var(--magenta);font-size:22px;line-height:1;transition:transform .2s}
+  details[open] summary .pls{transform:rotate(45deg)}
+  details p{margin:0 2px 16px;font-size:16px;color:#4a434f}
+
+  .strip{background:var(--ink);color:#fff;margin-top:40px}
+  .strip .in{max-width:680px;margin:0 auto;padding:18px 22px;display:flex;flex-wrap:wrap;
+    gap:10px 22px;justify-content:center;font-size:13.5px;opacity:.94}
+  .strip .in span{display:inline-flex;align-items:center;gap:7px}
+
+  footer{background:#171115;color:#b8aeb6;font-size:12.5px;line-height:1.7;
+    padding:26px 22px 92px;text-align:center}
+  footer .fb{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:10px}
+  footer .fb .mk{width:26px;height:26px;border-radius:7px;
+    background:linear-gradient(140deg,#ff5fae,var(--magenta-deep));color:#fff;font-weight:800;
+    font-size:12px;display:flex;align-items:center;justify-content:center}
+  footer .fb .wd{font-weight:700;letter-spacing:.2em;color:#fff;font-size:13px}
+  footer .disc{max-width:560px;margin:10px auto 0;opacity:.65}
+
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--white);
+    border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(31,26,29,.08);
+    display:flex;align-items:center;gap:12px;padding:11px 16px}
+  .sticky .info{flex:1;min-width:0}
+  .sticky .info .t{font-weight:700;font-size:14px;line-height:1.2}
+  .sticky .info .s{font-size:12px;color:var(--muted)}
+  .sticky a{flex:none;text-decoration:none;font-weight:800;color:#fff;font-size:15px;
+    background:linear-gradient(135deg,#ff4fa3,var(--magenta-deep));padding:13px 18px;border-radius:11px}
+
+  @media(min-width:560px){.reviews{grid-template-columns:1fr 1fr}.cases{grid-template-columns:1fr 1fr}}
+  @media(max-width:430px){body{font-size:17px}h1{font-size:29px}.deck{font-size:17.5px}
+    h2{font-size:23px}.offer h2{font-size:22px}}
+  @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;transition:none!important}}
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="in">
+      <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1781901283/Screenshot_2026-06-20_at_03.34.10_wws6cs.png" alt="Density Fiber" style="height:30px;width:auto;display:block">
+    </div>
+  </header>
+
+  <main class="wrap">
+    <span class="adlabel">Advertorial</span>
+    <p class="eyebrow">Haarverzorging</p>
+    <h1>30 seconden voor de spiegel: zo verbergen duizenden Nederlandse vrouwen grijze haren en uitgroei, zonder te verven</h1>
+    <p class="deck">Steeds vaker naar de kapper, steeds duurder, en na drie weken is de uitgroei alweer terug. Een Nederlands merk bedacht een oplossing die in een halve minuut werkt. We zochten het voor je uit.</p>
+
+    <div class="byline">
+      <span class="dot"></span>
+      <div>Door <b>de redactie</b> · 20 juni 2026 · 4 min leestijd</div>
+    </div>
+
+    <p>Het begint vaak klein. Een paar grijze plukken bij je scheiding, een streepje uitgroei dat eerder terugkomt dan je zou willen, of een dun plekje dat opvalt zodra je je haar naar achteren doet. Niks ernstigs. Maar wel iets waar je elke ochtend even bij stilstaat voor de spiegel.</p>
+
+    <p>De standaardoplossing is verven. En dat werkt, tot je merkt hoeveel tijd, geld en gedoe het kost. Om de paar weken een afspraak, twintig euro of meer per keer, en haar dat na een tijdje droger aanvoelt. Voor iets wat binnen drie weken alweer doorschemert.</p>
+
+    <div class="figure">
+      <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1781901139/0516_pqty6f.webp" alt="Grijze haren en uitgroei bij de scheiding" style="width:100%;border-radius:16px;border:1px solid #f7e3ef;display:block">
+      <p class="cap">Herkenbaar: grijs en uitgroei dat opvalt bij de scheiding.</p>
+    </div>
+
+    <p class="pull">Geen verfafspraak, geen wachttijd, geen schade. Eén poeder dat in je eigen haarkleur wegvalt.</p>
+
+    <p>Dat is precies waar <strong>Density Fiber Women</strong> voor gemaakt is. Het is een haarpoeder dat je losdept op de plek waar je het nodig hebt. De deeltjes hechten aan je eigen haar en blenden mee met je natuurlijke kleur, waardoor grijze haren, uitgroei en dunne plekken binnen een paar seconden uit het zicht verdwijnen. Geen plakkerig laagje, geen onnatuurlijke gloed. Je ziet gewoon voller haar.</p>
+
+    <p>We snappen de scepsis, want snelle haaroplossingen zien er vaak juist opvallend uit, of spoelen weg zodra het buiten gaat regenen. Daarom hieronder de eerlijke redenen waarom dit poeder wél blijft hangen bij vrouwen die het eenmaal proberen.</p>
+
+    <h2>Waarom vrouwen overstappen</h2>
+    <ol class="reasons">
+      <li class="reason"><span class="num">Reden 01</span><h3>Het werkt in 30 seconden</h3>
+        <p>Geen afspraak, geen inwerktijd. Dep het poeder aan op de plek die je wilt verbergen en je bent klaar. Sneller dan je tanden poetsen, voor je de deur uit gaat.</p></li>
+      <li class="reason"><span class="num">Reden 02</span><h3>Het blijft de hele dag zitten</h3>
+        <p>Bestand tegen zweet, wind en regen, en het geeft niet af op je kussen. Je kunt sporten, fietsen door de bui en er gewoon mee slapen. Uitwassen doe je simpel met je gewone shampoo.</p></li>
+      <li class="reason"><span class="num">Reden 03</span><h3>Niemand ziet dat je het draagt</h3>
+        <p>Het poeder blendt met je eigen haarkleur in plaats van er een laag overheen te leggen. Het resultaat is ondetecteerbaar, ook van dichtbij. Met de 100% kleurgarantie vind je gegarandeerd de tint die bij jou past.</p></li>
+      <li class="reason"><span class="num">Reden 04</span><h3>Minder vaak verven, dus minder schade</h3>
+        <p>Omdat je grijs en uitgroei tussendoor gewoon kunt wegwerken, hoef je veel minder vaak naar de kleur te grijpen. Schelt in je portemonnee, en je haar krijgt rust.</p></li>
+      <li class="reason"><span class="num">Reden 05</span><h3>Minder dan €0,50 per dag</h3>
+        <p>Eén potje gaat lang mee. Reken het terug en je zit onder de vijftig cent per dag, een fractie van wat je bij de kapper kwijt bent aan kleuren en bijwerken.</p></li>
+    </ol>
+
+    <div class="cta-wrap">
+      <a class="cta-inline" href="https://densityfiber.com/products/density-fiber-women">Probeer Density Fiber, nu 1+1 gratis</a>
+    </div>
+
+    <div class="proof">
+      <div class="stars">★★★★★</div>
+      <div class="big">5.316 reviews</div>
+      <div class="sub">Gemiddeld 5,0 · meer dan 5.000 tevreden vrouwen gingen je voor</div>
+    </div>
+
+    <div class="reviews">
+      <div class="rev"><div class="who"><span class="av">N</span><div><div class="name">Natasja B.</div><div class="verified">✓ Geverifieerde koper</div></div></div>
+        <div class="stars">★★★★★</div>
+        <p>Nu ik ouder word, merk ik dat er steeds meer grijze plukken in mijn haar verschijnen. Met Density Fiber kan ik die gelukkig eenvoudig verbergen.</p></div>
+      <div class="rev"><div class="who"><span class="av">E</span><div><div class="name">Esmee L.</div><div class="verified">✓ Geverifieerde koper</div></div></div>
+        <div class="stars">★★★★★</div>
+        <p>Wanneer ik mijn haar naar achteren draag, vallen kale plekken op. Dankzij Density Fiber kan ik ze makkelijk verbergen.</p></div>
+      <div class="rev"><div class="who"><span class="av">J</span><div><div class="name">Janine P.</div><div class="verified">✓ Geverifieerde koper</div></div></div>
+        <div class="stars">★★★★★</div>
+        <p>Super fijn om mijn haar voller te laten lijken. Het werkt beter dan ik had verwacht. Echt een aanrader!</p></div>
+      <div class="rev"><div class="who"><span class="av">S</span><div><div class="name">Serena M.</div><div class="verified">✓ Geverifieerde koper</div></div></div>
+        <div class="stars">★★★★★</div>
+        <p>Binnen een dag binnengekregen, werkt top en de kleur kwam goed overeen. Ik heb zelf blond.</p></div>
+    </div>
+
+    <h2>Herken je dit?</h2>
+    <div class="cases">
+      <div class="case"><h4>Grijze haren verbergen</h4><p>Grijs komt steeds sneller terug. Telkens opnieuw verven is duur, tijdrovend en niet bepaald goed voor je haar.</p></div>
+      <div class="case"><h4>Uitgroei wegwerken</h4><p>Na drie weken alweer uitgroei. Vervelend, maar herkenbaar. Hiermee werk je het in 30 seconden weg.</p></div>
+      <div class="case"><h4>Kale of dunne plekken</h4><p>Een dun plekje dat opvalt zodra je je haar opsteekt. Een paar tikjes poeder en het oogt meteen voller.</p></div>
+      <div class="case"><h4>Bredere scheiding</h4><p>Bij de scheiding schemert je hoofdhuid steeds meer door. Een paar tikjes poeder en de lijn oogt meteen voller en egaler.</p></div>
+      <div class="case"><h4>Bredere scheiding</h4><p>Je scheiding lijkt breder te worden en de hoofdhuid schemert erdoorheen. Een beetje poeder langs de lijn en het oogt meteen voller en dichter.</p></div>
+    </div>
+
+    <div class="figure">
+      <div style="border-radius:16px;overflow:hidden;border:1px solid #f7e3ef;line-height:0">
+        <iframe src="https://player.cloudinary.com/embed/?cloud_name=dcnabm5nc&public_id=570a0915e72b4520ba4976599bb7911f.HD-1080p-3.3Mbps-58255587_t9wuh9" style="height:auto;width:100%;aspect-ratio:640/360;display:block" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen frameborder="0"></iframe>
+      </div>
+      <p class="cap">Aandeppen en het directe resultaat, in 30 seconden.</p>
+    </div>
+
+    <h2>Waarom Density Fiber de betere keuze is</h2>
+    <div class="cmp">
+      <div class="row"><span>Water- en zweetbestendig</span><span class="y">✓</span></div>
+      <div class="row"><span>Geeft niet af op je kussen</span><span class="y">✓</span></div>
+      <div class="row"><span>Ondetecteerbaar in je haar</span><span class="y">✓</span></div>
+      <div class="row"><span>Veilig voor haar en hoofdhuid</span><span class="y">✓</span></div>
+      <div class="row"><span>Camoufleert kale plekken</span><span class="y">✓</span></div>
+      <div class="row"><span>Verbergt uitgroei</span><span class="y">✓</span></div>
+      <div class="row"><span>Makkelijk uitwasbaar</span><span class="y">✓</span></div>
+      <div class="row"><span>Geschikt voor dagelijks gebruik</span><span class="y">✓</span></div>
+      <div class="row"><span>Geen irritatie</span><span class="y">✓</span></div>
+    </div>
+
+    <div class="offer" id="offer">
+      <div class="inner">
+        <div class="kick">Tijdelijke actie · wegens succes verlengd</div>
+        <h2>Nu 1+1 gratis</h2>
+        <div class="stock">Bijna uitverkocht · voor 17:00 besteld, morgen in huis</div>
+        <div class="opt"><div><span class="l">1 + 1 GRATIS</span></div>
+          <div class="r"><span class="was">€79,90</span> <span class="now">€39,95</span></div></div>
+        <div class="opt best"><div><span class="l">2 + 2 GRATIS</span><span class="pill">Meest gekozen</span></div>
+          <div class="r"><span class="was">€159,90</span> <span class="now">€59,95</span></div></div>
+        <a class="cta" href="https://densityfiber.com/products/density-fiber-women">Bekijk de actie en kies je kleur</a>
+        <div class="reassure">
+          <span>✓ 100% kleurgarantie</span>
+          <span>✓ Gratis verzending vanaf €35</span>
+          <span>✓ Achteraf betalen met Klarna</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="guarantee"><b>100% kleurgarantie.</b> Matcht de kleur niet perfect met je haar? Dan ruil je hem gratis om voor een andere tint. Geen risico, alleen het juiste resultaat.</div>
+
+    <h2>Veelgestelde vragen</h2>
+    <details><summary>Beschadigt Density Fiber mijn haar? <span class="pls">+</span></summary>
+      <p>Nee. Het poeder hecht aan de buitenkant van je haar en wast er met gewone shampoo weer uit. Het zit niet in je haar zoals verf, dus het geeft geen kleurschade.</p></details>
+    <details><summary>Is het waterbestendig? <span class="pls">+</span></summary>
+      <p>Ja. Het is bestand tegen zweet, wind en regen en blijft de hele dag zitten, ook als je actief bent.</p></details>
+    <details><summary>Kan ik ermee sporten? <span class="pls">+</span></summary>
+      <p>Ja. Het houdt stand tijdens het sporten en geeft niet af, ook niet als je zweet.</p></details>
+    <details><summary>Kan ik het elke dag gebruiken? <span class="pls">+</span></summary>
+      <p>Ja, het is geschikt voor dagelijks gebruik en veilig voor je haar en hoofdhuid.</p></details>
+    <details><summary>Hoelang blijft het zitten? <span class="pls">+</span></summary>
+      <p>Tot je het uitwast. Het blijft de hele dag op zijn plek en geeft niet af op je kussen.</p></details>
+    <details><summary>Kan ik ermee slapen? <span class="pls">+</span></summary>
+      <p>Dat kan. Het geeft niet af op je kussensloop. Voor het beste resultaat was je het er de volgende dag gewoon uit.</p></details>
+
+    <div class="cta-wrap">
+      <a class="cta-inline" href="https://densityfiber.com/products/density-fiber-women">Ja, ik wil voller haar in 30 seconden</a>
+      <div class="cap" style="font-style:normal;color:#9a5d7d;margin-top:10px">Meer dan 5.000 vrouwen gingen je voor · 5,0 ★ uit 5.316 reviews</div>
+    </div>
+  </main>
+
+  <div class="strip">
+    <div class="in">
+      <span>🚚 Voor 17:00 besteld, morgen in huis</span>
+      <span>📦 Gratis verzending boven €35</span>
+      <span>💳 Achteraf betalen met Klarna</span>
+    </div>
+  </div>
+
+  <footer>
+    <div class="fb"><span class="mk">FD</span><span class="wd">DENSITY FIBER</span></div>
+    De makkelijkste en snelste manier om je haar direct voller te maken.
+    <div class="disc">Advertorial. Deze pagina is een commerciële uiting van Density Fiber. Resultaten kunnen per persoon verschillen. Reviews zijn afkomstig van geverifieerde klanten.</div>
+  </footer>
+
+  <div class="sticky">
+    <div class="info"><div class="t">1+1 gratis · €39,95</div><div class="s">Bijna uitverkocht · morgen in huis</div></div>
+    <a href="https://densityfiber.com/products/density-fiber-women">Bekijk actie</a>
+  </div>
+
+</body>
+</html>
